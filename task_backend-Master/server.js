@@ -7,7 +7,7 @@ const cors = require("cors");
 const app = express();
 
 const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 // Middleware
 app.use(cors());
@@ -172,11 +172,11 @@ app.delete("/tasks/:id", async (req, res) => {
 // MongoDB Atlas Connection
 async function startServer() {
   try {
-    if (!MONGO_URI) {
-      throw new Error("MONGO_URI is missing in .env file");
+    if (!MONGODB_URI) {
+      throw new Error("MONGODB_URI is missing in .env file");
     }
 
-    await mongoose.connect(MONGO_URI);
+    await mongoose.connect(MONGODB_URI);
 
     console.log("================================");
     console.log("MongoDB Atlas Connected Successfully");
