@@ -1,5 +1,4 @@
-
-require("dotenv").config();
+require("dotenv").config({ path: require("path").join(__dirname, ".env") });
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -174,7 +173,7 @@ app.delete("/tasks/:id", async (req, res) => {
 async function startServer() {
   try {
     if (!MONGO_URI) {
-      throw new Error("MONGODB_URI is missing in .env file");
+      throw new Error("MONGO_URI is missing in .env file");
     }
 
     await mongoose.connect(MONGO_URI);
@@ -195,5 +194,4 @@ async function startServer() {
     process.exit(1);
   }
 }
-
 startServer();
